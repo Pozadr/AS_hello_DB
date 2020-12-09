@@ -42,4 +42,12 @@ public class Video {
         this.url = url;
     }
 
+    @Override
+    public String toString() {
+        return "Video{" +
+                "videoId=" + videoId +
+                ", title='" + title + '\'' +
+                ", url='" + url + '\'' +
+                '}';
+    }
 }

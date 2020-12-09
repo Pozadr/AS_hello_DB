@@ -5,7 +5,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import pl.pozadr.hellodb.model.Video;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class VideoDaoImpl implements VideoDao {
@@ -26,7 +28,16 @@ public class VideoDaoImpl implements VideoDao {
 
     @Override
     public List<Video> findAll() {
-        return null;
+        List<Video> videoList = new ArrayList<>();
+        String sql = "SELECT * FROM videos";
+        List<Map<String, Object>> maps = jdbcTemplate.queryForList(sql);
+        // DB to POJO
+        maps.forEach(element -> videoList.add(new Video(
+                Long.parseLong(String.valueOf(element.get("video_id"))),
+                String.valueOf(element.get("title")),
+                String.valueOf(element.get("url"))
+        )));
+        return videoList;
     }
 
     @Override
