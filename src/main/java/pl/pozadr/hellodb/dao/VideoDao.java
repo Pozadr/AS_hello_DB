@@ -15,4 +15,6 @@ public interface VideoDao {
 
     void deleteVideo(long id);
 
+    Video getOneVideo(long id);
+
 }

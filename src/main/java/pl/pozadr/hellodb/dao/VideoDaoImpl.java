@@ -5,13 +5,14 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import pl.pozadr.hellodb.model.Video;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 @Repository
 public class VideoDaoImpl implements VideoDao {
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
     @Autowired
     public VideoDaoImpl(JdbcTemplate jdbcTemplate) {
@@ -52,5 +53,13 @@ public class VideoDaoImpl implements VideoDao {
         jdbcTemplate.update(sql, id);
     }
 
+    @Override
+    public Video getOneVideo(long id) {
+        String sql = "SELECT * FROM videos WHERE video_id = ?";
+        return jdbcTemplate.queryForObject(sql,
+                (rs, rowNum) -> new Video(rs.getLong("video_id"), rs.getString("title"),
+                        rs.getString("url")),
+                id);
+    }
 
 }
