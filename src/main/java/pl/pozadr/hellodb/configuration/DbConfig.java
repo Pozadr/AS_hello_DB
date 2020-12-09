@@ -21,14 +21,14 @@ public class DbConfig {
         this.dataSource = dataSource;
     }
 
-    // solution if you have more DBs than 1
     // If you have only 1 DB better solution is to use application.properties file and @Autowired constructor.
+    // Solution if you have more DBs than 1
     /*@Bean
     public DataSource getDataSource() {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
-        dataSourceBuilder.url("jdbc:mysql://remotemysql.com:3306/N8Ilk2pIr1");
-        dataSourceBuilder.username("N8Ilk2pIr1");
-        dataSourceBuilder.password("S7OtcibDzA");
+        dataSourceBuilder.url("<url>");
+        dataSourceBuilder.username("<username>");
+        dataSourceBuilder.password("<password>");
         dataSourceBuilder.driverClassName("com.mysql.cj.jdbc.Driver");
         return dataSourceBuilder.build();
     }
