@@ -15,7 +15,8 @@ public class Start {
         //videoDao.saveVideo(2L, "North Orbit 2021 - Big Air | Freeride Kite", "https://www.youtube.com/watch?v=Jq83KWmZBjo");
         //videoDao.saveVideo(3L, "3 Kite", "https://www.youtube.com/watch?v=Jq83KWmZBjo");
         //videoDao.saveVideo(4L, "4 Kite", "https://www.youtube.com/watch?v=Jq83KWmZBjo");
-        videoDao.updateVideo(new Video(4L,"North Reach movie", "https://www.youtube.com/updated"));
+        videoDao.updateVideo(new Video(3L,"North Reach movie", "https://www.youtube.com/updated"));
+        videoDao.deleteVideo(2L);
         videoDao.findAll().forEach(System.out::println);
     }
 }

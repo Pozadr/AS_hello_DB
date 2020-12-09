@@ -42,13 +42,15 @@ public class VideoDaoImpl implements VideoDao {
 
     @Override
     public void updateVideo(Video newVideo) {
-        String sql = "UPDATE videos SET videos.title=?, videos.url=? WHERE video_id=?";
+        String sql = "UPDATE videos SET videos.title = ?, videos.url = ? WHERE video_id = ?";
         jdbcTemplate.update(sql, newVideo.getTitle(), newVideo.getUrl(), newVideo.getVideoId());
     }
 
-
     @Override
-    public void deleteVideo() {
-
+    public void deleteVideo(long id) {
+        String sql = "DELETE FROM videos WHERE video_id = ?";
+        jdbcTemplate.update(sql, id);
     }
+
+
 }
