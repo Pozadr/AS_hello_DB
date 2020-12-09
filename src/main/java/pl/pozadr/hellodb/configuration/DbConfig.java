@@ -41,10 +41,12 @@ public class DbConfig {
 
 
     // CREATE TABLE
+    /*
     @EventListener(ApplicationReadyEvent.class)
     public void init() {
         String sql = "CREATE TABLE videos(video_id int, title varchar(255), url varchar(255), PRIMARY KEY (video_id))";
         getJdbcTemplate().update(sql);
     }
+     */
 
 }
