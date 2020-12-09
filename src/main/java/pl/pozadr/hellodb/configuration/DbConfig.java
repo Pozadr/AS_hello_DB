@@ -1,5 +1,6 @@
 package pl.pozadr.hellodb.configuration;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.ApplicationEvent;
@@ -13,7 +14,16 @@ import javax.sql.DataSource;
 @Configuration
 public class DbConfig {
 
-    @Bean
+    private final DataSource dataSource;
+
+    @Autowired
+    public DbConfig(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
+    // solution if you have more DBs than 1
+    // If you have only 1 DB better solution is to use application.properties file and @Autowired constructor.
+    /*@Bean
     public DataSource getDataSource() {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.url("jdbc:mysql://remotemysql.com:3306/N8Ilk2pIr1");
@@ -22,10 +32,11 @@ public class DbConfig {
         dataSourceBuilder.driverClassName("com.mysql.cj.jdbc.Driver");
         return dataSourceBuilder.build();
     }
+     */
 
     @Bean
     public JdbcTemplate getJdbcTemplate() {
-        return new JdbcTemplate(getDataSource());
+        return new JdbcTemplate(dataSource);
     }
 
 
